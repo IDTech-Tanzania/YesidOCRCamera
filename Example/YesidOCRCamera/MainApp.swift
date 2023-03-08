@@ -114,8 +114,8 @@ struct OCRCompletedScanView: View {
                         Spacer()
                         Text("\(value)")
                     }
-                    .cornerRadius(/*@START_MENU_TOKEN@*/6.0/*@END_MENU_TOKEN@*/)
-                    .padding(/*@START_MENU_TOKEN@*/.vertical, 1.0/*@END_MENU_TOKEN@*/)
+                    .cornerRadius(6.0)
+                    .padding(.vertical, 1.0)
                     
                 }
                 if(self.viewModel.getCardImageResults().keys.contains("Signature")){
@@ -128,8 +128,8 @@ struct OCRCompletedScanView: View {
                             .cornerRadius(6)
                             .frame(width: 150, height: 100, alignment: .trailing)
                     }
-                    .cornerRadius(/*@START_MENU_TOKEN@*/6.0/*@END_MENU_TOKEN@*/)
-                    .padding(/*@START_MENU_TOKEN@*/.vertical, 1.0/*@END_MENU_TOKEN@*/)
+                    .cornerRadius(6.0)
+                    .padding(.vertical, 1.0)
                 }
                 
             }
