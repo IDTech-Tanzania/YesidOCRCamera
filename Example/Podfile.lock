@@ -70,7 +70,7 @@ PODS:
   - PromisesObjC (2.1.1)
   - Protobuf (3.21.9)
   - YesidOCRCamera (0.1.0):
-    - GoogleMLKit/ObjectDetectionCustom
+    - GoogleMLKit/ObjectDetectionCustom (~> 3.2.0)
 
 DEPENDENCIES:
   - YesidOCRCamera (from `../`)
@@ -115,7 +115,7 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   Protobuf: 02524ec14183fe08fb259741659e79683788158b
-  YesidOCRCamera: d7d9887578e3c47c1321bfc9c8982ae1100eac42
+  YesidOCRCamera: ac39409017ed47a769b8b10a5f345e17ad89b8e2
 
 PODFILE CHECKSUM: da892ca0eed84c7a70bf487e270bc69ed7c4a321
 
