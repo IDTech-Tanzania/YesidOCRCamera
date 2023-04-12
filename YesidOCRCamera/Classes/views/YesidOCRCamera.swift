@@ -55,7 +55,7 @@ public struct YesidOCRCamera: View {
                 if #available(iOS 15.0, *) {
                     Rectangle().overlay{
                         HStack(spacing:10){
-                            SwiftUI.Text("\(self.ocrReader.direction)")
+                            SwiftUI.Text("\(self.ocrReader.instructionText)")
                                 .foregroundColor(.white)
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
@@ -67,7 +67,7 @@ public struct YesidOCRCamera: View {
                     if self.ocrReader.isLoading {
                         Rectangle().overlay(
                             HStack(spacing: 10) {
-                                SwiftUI.Text("\(self.ocrReader.direction)")
+                                SwiftUI.Text("\(self.ocrReader.instructionText)")
                                     .foregroundColor(.white)
                                 ActivityIndicatorView(style: .large, color: .white)
                             }
@@ -93,7 +93,7 @@ public struct YesidOCRCamera: View {
                     }
                     
                     VStack{
-                        SwiftUI.Text("\(self.ocrReader.direction)")
+                        SwiftUI.Text("\(self.ocrReader.instructionText)")
                             .foregroundColor(.white)
                             .padding()
                     }

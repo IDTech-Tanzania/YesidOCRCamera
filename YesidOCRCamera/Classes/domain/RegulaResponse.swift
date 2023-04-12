@@ -50,7 +50,7 @@ public struct ContainerListList: Codable {
     var docGraphicsInfo: DocGraphicsInfo?
     var imageQualityCheckList: ImageQualityCheckList?
     var listVerifiedFields: ListVerifiedFields?
-    var text: Text?
+    var text: RegulaText?
     var images: Images?
     var status: Status?
 
@@ -461,7 +461,7 @@ struct DetailsRFID: Codable {
 }
 
 // MARK: - Text
-struct Text: Codable {
+struct RegulaText: Codable {
     var availableSourceList: [TextAvailableSourceList]?
     var comparisonStatus: Int?
     var dateFormat: String?

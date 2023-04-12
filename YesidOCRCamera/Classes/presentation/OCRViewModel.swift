@@ -23,13 +23,13 @@ public class OCRViewModel: NSObject, ObservableObject {
     
     @Published var rectangleSize = CGRect()
     
-    @Published var direction: String = ""
+    @Published var instructionText: String = ""
     
     @Published var capturePhoto:Bool = false
     
     @Published var cardImage:UIImage?
     
-    @Published public var startOCRDetection:Bool = false
+    @Published public var startOCRDetection:Bool = true
     
     @Published private var proceedWithOCR:Bool = false
     
@@ -55,6 +55,16 @@ public class OCRViewModel: NSObject, ObservableObject {
     
     @Published var defaultLocalizer = LocalizeUtils.defaultLocalizer
     
+    public func performOCRProcess(sampleBuffer: CMSampleBuffer?){
+        do {
+            guard let sampleBuffer = sampleBuffer else {
+                return
+            }
+            try self.detect(sampleBuffer: sampleBuffer)
+        } catch {
+            self.instructionText = "Error has been thrown"
+        }
+    }
     
     public func performOcr(){
         subject
@@ -66,7 +76,7 @@ public class OCRViewModel: NSObject, ObservableObject {
                     }
                     try self.detect(sampleBuffer: sampleBuffer)
                 } catch {
-                    self.direction = "Error has been thrown"
+                    self.instructionText = "Error has been thrown"
                 }
             }
             .store(in: &cancellables)
@@ -78,7 +88,7 @@ public class OCRViewModel: NSObject, ObservableObject {
         }
         DispatchQueue.main.async {
             self.isLoading = true
-            self.direction = NSLocalizedString("Processing", comment: "Processing")
+            self.instructionText = NSLocalizedString("Processing", comment: "Processing")
         }
         guard let url = URL(string: apiEndpoint) else {
             semaphore.signal()
@@ -110,10 +120,10 @@ public class OCRViewModel: NSObject, ObservableObject {
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
-                    self.isResultSet = false
+                    self.isResultSet = true
                     self.isLoading = false
                     self.placeMentColor = .white
-                    self.direction = NSLocalizedString("ProcessingError", comment: "Processing Error")
+                    self.instructionText = NSLocalizedString("ProcessingError", comment: "Processing Error")
                     self.proceedWithOCR = false
                     self.isError = true
                 }
@@ -122,13 +132,13 @@ public class OCRViewModel: NSObject, ObservableObject {
             }
             do {
                 let response = try JSONDecoder().decode(RegulaResponse.self, from: data)
-                if let count = response.containerList?.count {
+                if (response.containerList?.count) != nil {
                     DispatchQueue.main.async {
                         self.cardResults = response.containerList?.list
                         self.isResultSet = true
                         self.isLoading = false
                         self.placeMentColor = .white
-                        self.direction = NSLocalizedString("ProcessingDone", comment: "Processing Done")
+                        self.instructionText = NSLocalizedString("ProcessingDone", comment: "Processing Done")
                         self.proceedWithOCR = false
                     }
                     self.semaphore.signal()
@@ -138,17 +148,17 @@ public class OCRViewModel: NSObject, ObservableObject {
                         self.isResultSet = true
                         self.isLoading = false
                         self.placeMentColor = .white
-                        self.direction = NSLocalizedString("ProcessingDone", comment: "Processing Done")
+                        self.instructionText = NSLocalizedString("ProcessingDone", comment: "Processing Done")
                         self.proceedWithOCR = false
                     }
                     self.semaphore.signal()
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.isResultSet = false
+                    self.isResultSet = true
                     self.isLoading = false
                     self.placeMentColor = .white
-                    self.direction = NSLocalizedString("ProcessingError", comment: "Processing Error")
+                    self.instructionText = NSLocalizedString("ProcessingError", comment: "Processing Error")
                     self.proceedWithOCR = false
                     self.isError = true
                 }
@@ -196,7 +206,6 @@ public class OCRViewModel: NSObject, ObservableObject {
         
         let objectDetector = ObjectDetector.objectDetector(options: options)
         
-        
         let image = VisionImage(buffer: sampleBuffer)
         image.orientation = imageOrientation(
             deviceOrientation: UIDevice.current.orientation,
@@ -212,11 +221,11 @@ public class OCRViewModel: NSObject, ObservableObject {
             }else{
                 objectDetector.process(image) { objects, error in
                     guard error == nil else {
-                        self.direction = "\(String(describing: error?.localizedDescription))"
+                        self.instructionText = "\(String(describing: error?.localizedDescription))"
                         return
                     }
                     guard !objects!.isEmpty else {
-                        self.direction = NSLocalizedString("PlaceCardOnFrame", comment: "Place card on frame")
+                        self.instructionText = NSLocalizedString("PlaceCardOnFrame", comment: "Place card on frame")
                         return
                     }
                     for object in objects! {
@@ -226,7 +235,7 @@ public class OCRViewModel: NSObject, ObservableObject {
                             if self.checkFaceBoundsCenter(boundingBox: frame) && !self.proceedWithOCR {
                                 self.boundingBox = frame
                                 self.changePlaceMentColor(color: .green)
-                                self.direction = NSLocalizedString("PleaseHoldStill", comment: "Please hold still")
+                                self.instructionText = NSLocalizedString("PleaseHoldStill", comment: "Please hold still")
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1
                                 ) {
                                     self.proceedWithOCR = true
@@ -301,7 +310,7 @@ public class OCRViewModel: NSObject, ObservableObject {
     public func clearData(){
         self.placeMentColor = Color.white
         self.boundingBox = CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0)
-        self.direction = ""
+        self.instructionText = ""
         self.cardImage = nil
         self.sampleBuffer = nil
         self.cardResults = nil
