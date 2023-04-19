@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Emmanuel Mtera' => 'emtera@yesid.io' }
-  s.source = {:http => 'https://raw.githubusercontent.com/IDTech-Tanzania/YesidOCRCamera/main/YesidOCRCamera.zip'}
+  s.source = {:http => 'https://github.com/IDTech-Tanzania/YesidOCRCamera/tree/main/YesidOCRCamera.framework'}
   s.ios.vendored_frameworks = 'YesidOCRCameraFramework.framework'
   s.ios.deployment_target = '13.0'
   s.swift_versions = ['5.0']
