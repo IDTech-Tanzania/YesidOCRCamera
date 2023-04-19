@@ -3,11 +3,10 @@
 #platform :ios, '10.0'
 
 target 'YesidOCRCamera_Example' do
-  pod 'YesidOCRCamera', :path => '../'
+  pod 'YesidOCRCamera',  '~> 0.1.1'
 
   target 'YesidOCRCamera_Tests' do
     inherit! :search_paths
 
-    
   end
 end

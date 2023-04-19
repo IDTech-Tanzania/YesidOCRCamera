@@ -7,14 +7,14 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Emmanuel Mtera' => 'emtera@yesid.io' }
-  s.source           = { :git => 'https://github.com/IDTech-Tanzania/YesidOCRCamera.git', :tag => s.version.to_s }
-  
+  s.source = {:http => 'https://raw.githubusercontent.com/IDTech-Tanzania/YesidOCRCamera/main/YesidOCRCamera.zip'}
+  s.ios.vendored_frameworks = 'YesidOCRCameraFramework.framework'
   s.ios.deployment_target = '13.0'
   s.swift_versions = ['5.0']
-  
-  s.source_files = 'YesidOCRCamera/Classes/**/*'
+  s.exclude_files = "Classes/Exclude"
+  s.source_files = 'Users/intisarhamza/yesid-ios/NewFrameworks/YesidOCRCamera'
   
   s.dependency 'GoogleMLKit/ObjectDetectionCustom', '~> 3.2.0'
-  s.static_framework = true
+  #s.static_framework = true
   
 end

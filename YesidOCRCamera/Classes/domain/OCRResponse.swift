@@ -8,6 +8,6 @@
 import Foundation
 
 public struct OCRResponse {
-    let documentImages: [String: UIImage]
-    let documentText: [String: String]
+    public let documentImages: [String: String]?
+    public let documentText: [String: String]?
 }

@@ -1,5 +1,5 @@
 import XCTest
-import YesidOCRCamera
+import YesidOCRCameraFramework
 
 class Tests: XCTestCase {
     

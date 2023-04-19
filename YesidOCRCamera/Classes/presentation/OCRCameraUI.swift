@@ -10,10 +10,11 @@ import AVFoundation
 import Combine
 import UIKit
 
+
 // MARK: The OCRAppDelegate
-class OCRAppDelegate: UIResponder, UIApplicationDelegate {
+private class OCRAppDelegate: UIResponder, UIApplicationDelegate {
     let viewModel: OCRViewModel = OCRViewModel()
-    private var cancellables = [AnyCancellable]()
+    var cancellables = [AnyCancellable]()
     let captureSession = OCRCaptureSession()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -23,75 +24,88 @@ class OCRAppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-// MARK: OCR MainApp
+// MARK: The Private OCRMainCameraUI
 public struct OCRCameraUI: View {
     var configurationBuilder: OCRConfigurationBuilder
     var onResults: (OCRResponse) -> Void
-    @UIApplicationDelegateAdaptor(OCRAppDelegate.self) private var ocrAppDelegate
+    @State private var ocrAppDelegate: OCRAppDelegate = OCRAppDelegate()
     public init(configurationBuilder:OCRConfigurationBuilder, onResults:@escaping (OCRResponse) -> Void){
         self.configurationBuilder = configurationBuilder
         self.onResults = onResults
     }
     public var body: some View {
-        return OCRMainCameraUI(configurationBuilder: configurationBuilder, onResults: onResults, ocrAppDelegate:ocrAppDelegate)
+        return _OCRCameraUI(
+            configurationBuilder: configurationBuilder, onResults: onResults)
+        .environmentObject(ocrAppDelegate.viewModel)
+        .environmentObject(ocrAppDelegate.captureSession)
+        .onAppear(){
+            ocrAppDelegate.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+        }
+        .onDisappear(){
+            ocrAppDelegate.cancellables.forEach { $0.cancel() }
+        }
     }
 }
 
-// MARK: The Public OCRMainCameraUI
-// Takes in OCRConfigurationBuilder and onResults callback which return OCRResponse
-private struct OCRMainCameraUI: View {
-    var configurationBuilder: OCRConfigurationBuilder
-    var onResults: (OCRResponse) -> Void
-    @State private var ocrAppDelegate: OCRAppDelegate = OCRAppDelegate()
-    init(configurationBuilder:OCRConfigurationBuilder, onResults:@escaping (OCRResponse) -> Void, ocrAppDelegate: OCRAppDelegate){
-        self.configurationBuilder = configurationBuilder
-        self.onResults = onResults
-        self.ocrAppDelegate = ocrAppDelegate
-    }
-    var body: some View {
-        return _OCRCameraUI(
-        configurationBuilder: configurationBuilder, onResults: onResults)
-        .environmentObject(ocrAppDelegate.viewModel)
-        .environmentObject(ocrAppDelegate.captureSession)
-    }
-}
 
 // MARK: The Private _OCRCameraUI
 private struct _OCRCameraUI: View {
-    var configurationBuilder: OCRConfigurationBuilder = OCRConfigurationBuilder()
+    var configurationBuilder: OCRConfigurationBuilder
     var onResults: (OCRResponse) -> Void = {_ in }
+    
     @EnvironmentObject private var viewModel:OCRViewModel
     @EnvironmentObject private var captureSession: OCRCaptureSession
     
-    public init(configurationBuilder:OCRConfigurationBuilder, onResults:@escaping (OCRResponse) -> Void){
+    var screenWidth: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    var screenHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
+    init(configurationBuilder:OCRConfigurationBuilder, onResults:@escaping (OCRResponse) -> Void){
         self.configurationBuilder = configurationBuilder
         self.onResults = onResults
     }
     
-    public var body: some View {
+    var body: some View {
         return ZStack(alignment:.bottom){
-            IOSCameraView()
-            SimpleProgressView()
-            InstructionText()
+            if(!self.viewModel.isLoading){
+                IOSCameraView()
+                InstructionText()
+            }else {
+                SimpleProgressView()
+                InstructionText()
+            }
         }
     }
     
     @ViewBuilder
     private func IOSCameraView() -> some View {
-        if #available(iOS 14.0, *) {
-            ZStack{
-                CameraView(captureSession: self.captureSession.captureSession)
-                cameraOverlay()
-            }.onDisappear(){
-                self.captureSession.stop()
+        ZStack{
+            CameraView(captureSession: self.captureSession.captureSession)
+            cameraOverlay()
+        }
+        .onDisappear(){
+            self.captureSession.stop()
+        }
+        .onAppear(){
+            if(self.viewModel.isResultSet){
+                self.viewModel.clearData()
             }
-            .onAppear(){
-                self.captureSession.start()
-            }.onChange(of: self.captureSession.sampleBuffer, perform: { _ in
-                self.viewModel.performOcr()
-            })
-        } else {
-            // Fallback on earlier versions
+            self.captureSession.start()
+            self.viewModel.performOcr()
+        }
+        .onReceive(self.viewModel.$cardResults){ results in
+            if(results != nil){
+                let documentImageResults = self.viewModel.getCardImageResults()
+                let documentTextResults = self.viewModel.getCardTextResults()
+                let ocrResponse = OCRResponse(
+                    documentImages: documentImageResults,
+                    documentText: documentTextResults)
+                self.onResults(ocrResponse)
+            }
         }
     }
     
@@ -103,23 +117,22 @@ private struct _OCRCameraUI: View {
                 RoundedRectangle(cornerRadius: 3)
                     .stroke(self.viewModel.placeMentColor, lineWidth: 3)
                     .padding(20)
-                    .frame(width: geometry.size.width, height: geometry.size.height*0.4)
+                    .frame(width: geometry.size.width, height: geometry.size.height <= 340 ? geometry.size.height * 0.8 : geometry.size.height * 0.45)
                 Spacer()
             }
+            .frame(width: geometry.size.width, height: geometry.size.height)
         }
     }
-
     
     @ViewBuilder
     private func SimpleProgressView() -> some View {
-        if #available(iOS 14.0, *) {
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle())
-        } else {
+        Rectangle().overlay(
             ActivityIndicator(style: .medium)
-        }
+        )
+        .frame(maxWidth: self.screenWidth, maxHeight: self.screenHeight)
+        .background(Color.black)
     }
-
+    
     
     @ViewBuilder
     private func InstructionText() -> some View {
@@ -127,17 +140,19 @@ private struct _OCRCameraUI: View {
             .foregroundColor(Color.white)
             .padding()
     }
+    
+    
 }
 
 // MARK: The ProgressView to support older ios verions
 private struct ActivityIndicator: UIViewRepresentable {
     typealias UIViewType = UIActivityIndicatorView
     let style: UIActivityIndicatorView.Style
-
+    
     func makeUIView(context: UIViewRepresentableContext<Self>) -> UIViewType {
         UIViewType(style: style)
     }
-
+    
     func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<Self>) {
         uiView.style = style
         uiView.hidesWhenStopped = true
@@ -148,8 +163,8 @@ private struct ActivityIndicator: UIViewRepresentable {
 // MARK: USAGE
 /*
  OCRCameraUI(
-     configurationBuilder: OCRConfigurationBuilder()
-         .setUserLicense(userLicense: "1234"),
-     onResults: {OCRResponse in print(OCRResponse)}
+ configurationBuilder: OCRConfigurationBuilder()
+ .setUserLicense(userLicense: "1234"),
+ onResults: {OCRResponse in print(OCRResponse)}
  )
  */

@@ -1,20 +1,18 @@
 import SwiftUI
 import Combine
-import YesidOCRCamera
+import YesidOCRCameraFramework
 
 struct MainApp: View {
-    @State var appDelegate: AppDelegate = AppDelegate()
     var body: some View {
         OCRScreen()
-            .environmentObject(appDelegate.captureSession)
-            .environmentObject(appDelegate.cardModel)
     }
     
 }
 
 struct OCRScreen: View {
-    @EnvironmentObject var ocrModel:OCRViewModel
-    @EnvironmentObject var captureSession: OCRCaptureSession
+    @State var cardImageResults: [String:String]? = [:]
+    @State var cardTextResults: [String:String]? = [:]
+    @State var isResultSet: Bool = false
     var body: some View {
         VStack {
             
@@ -30,34 +28,20 @@ struct OCRScreen: View {
     @ViewBuilder
     func OCRCameraView()-> some View {
         VStack {
-            if(!self.ocrModel.isResultSet){
+            if(!self.isResultSet){
                 HStack{
-                    YesidOCRCamera()
-                        .environmentObject(self.ocrModel)
-                        .environmentObject(self.captureSession)
-                        .onDisappear(){
-                            self.captureSession.stop()
-                            self.ocrModel.startOCRDetection = false
-                        }
-                        .onAppear(){
-                            self.captureSession.start()
-                            self.ocrModel.startOCRDetection = true
-                        }
-                        .onChange(of: self.ocrModel.startOCRDetection){
-                            newvalue in
-                            if(newvalue){
-                                self.ocrModel.performOcr()
-                            }
-                        }
+                    OCRCameraUI(configurationBuilder: OCRConfigurationBuilder().setUserLicense(userLicense: "1234")){
+                        results in
+                        print(results)
+                    }
                 }
                 .cornerRadius(6)
                 .padding(.vertical,10)
                 .frame(maxWidth:.infinity)
                 .frame(height:UIScreen.screenHeight)
             }
-            if(self.ocrModel.isResultSet){
-                OCRCompletedScanView()
-                    .environmentObject(self.ocrModel)
+            if(self.isResultSet){
+                OCRCompletedScanView(cardImageResults: self.$cardImageResults, cardTextResults: self.$cardTextResults, isResultSet: self.$isResultSet)
                     .padding(.vertical,20)
             }
         }
@@ -65,15 +49,17 @@ struct OCRScreen: View {
 }
 
 struct OCRCompletedScanView: View {
-    @EnvironmentObject var viewModel: OCRViewModel
     @State var hideRecapture:Bool = false
+    @Binding var cardImageResults: [String:String]?
+    @Binding var cardTextResults: [String:String]?
+    @Binding var isResultSet: Bool
     var body: some View {
       MainView()
     }
     
     @ViewBuilder
     func MainView()-> some View {
-        if(self.viewModel.getCardImageResults().keys.contains("Portrait") && self.viewModel.getCardTextResults()!.count > 0){
+        if(self.cardImageResults!.keys.contains("Portrait") && self.cardTextResults!.count > 0){
             ResultsView()
         }else{
             NoResultsView()
@@ -84,14 +70,16 @@ struct OCRCompletedScanView: View {
     func ResultsView()-> some View {
         VStack{
             ZStack(alignment:.bottom) {
-                Image(base64String: viewModel.getCardImageResults()["Document front side"] ?? "")?
+                Image(base64String: self.cardImageResults!["Document front side"] ?? "")?
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(6)
                 if(!hideRecapture){
                     Button(
                         "Recapture", action: {
-                            self.viewModel.clearData()
+                            self.isResultSet = false
+                            self.cardImageResults = [:]
+                            self.cardTextResults = [:]
                         })
                     .offset(x: 0, y: 10)
                 }
@@ -102,13 +90,13 @@ struct OCRCompletedScanView: View {
             Text("").padding(.vertical,5)
             VStack(spacing: 16){
                 HStack{
-                    Image(base64String: viewModel.getCardImageResults()["Portrait"] ?? "")?
+                    Image(base64String: self.cardImageResults!["Portrait"] ?? "")?
                         .resizable()
                         .cornerRadius(6)
                 }
                  .frame(maxWidth:.infinity,maxHeight: 300)
                 
-                ForEach((viewModel.getCardTextResults()?.sorted(by:>))!,id:\.key){key,value in
+                ForEach((self.cardTextResults?.sorted(by:>))!,id:\.key){key,value in
                     HStack(alignment: .center){
                         Text("\(key)")
                         Spacer()
@@ -118,11 +106,11 @@ struct OCRCompletedScanView: View {
                     .padding(.vertical, 1.0)
                     
                 }
-                if(self.viewModel.getCardImageResults().keys.contains("Signature")){
+                if(self.cardImageResults!.keys.contains("Signature")){
                     HStack(alignment: .center){
                         Text("Signature")
                         Spacer()
-                        SwiftUI.Image(base64String: viewModel.getCardImageResults()["Signature"] ?? "")?
+                        Image(base64String: self.cardImageResults!["Signature"] ?? "")?
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(6)
@@ -147,7 +135,9 @@ struct OCRCompletedScanView: View {
             Button(
                 "Recapture",
                 action: {
-                    self.viewModel.clearData()
+                    self.isResultSet = false
+                    self.cardImageResults = [:]
+                    self.cardTextResults = [:]
                 })
             .offset(x: 0, y: 10)
         }

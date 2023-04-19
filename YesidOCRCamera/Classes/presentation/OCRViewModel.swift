@@ -54,7 +54,7 @@ public class OCRViewModel: NSObject, ObservableObject {
     let queue = DispatchQueue(label: "io.yesid.sdk.ios")
     
     @Published var defaultLocalizer = LocalizeUtils.defaultLocalizer
-    
+
     public func performOCRProcess(sampleBuffer: CMSampleBuffer?){
         do {
             guard let sampleBuffer = sampleBuffer else {
@@ -80,6 +80,7 @@ public class OCRViewModel: NSObject, ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        print("SampleBuffer: \(self.sampleBuffer)")
     }
     
     private func fetchDetails(image:String) {

@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0325461D37F61C53FB532740 /* libPods-YesidOCRCamera_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4B87E7D787EB6D51138133 /* libPods-YesidOCRCamera_Example.a */; };
-		590629D829B8B68B009CC3F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590629D729B8B68B009CC3F6 /* AppDelegate.swift */; };
+		35F0F3D4E7706EE82252117C /* libPods-YesidOCRCamera_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB328EBE3719D592911B1F15 /* libPods-YesidOCRCamera_Example.a */; };
+		590629D829B8B68B009CC3F6 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590629D729B8B68B009CC3F6 /* App.swift */; };
 		590629DA29B8B69B009CC3F6 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590629D929B8B69B009CC3F6 /* MainApp.swift */; };
 		590629DC29B8B946009CC3F6 /* object_labeler.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 590629DB29B8B946009CC3F6 /* object_labeler.tflite */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		90DEDF0B3C157BCE5956A7BE /* libPods-YesidOCRCamera_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FE943759BD8AAC05D75C4C /* libPods-YesidOCRCamera_Tests.a */; };
+		677F69CDB4510209757092AB /* libPods-YesidOCRCamera_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0E89A8B2934BFC4338C525 /* libPods-YesidOCRCamera_Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,23 +28,23 @@
 
 /* Begin PBXFileReference section */
 		00BD0EF7C1B00AFAC16AF7B5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		06FE943759BD8AAC05D75C4C /* libPods-YesidOCRCamera_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YesidOCRCamera_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D413613FD332F1A57FF07F0 /* Pods-YesidOCRCamera_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YesidOCRCamera_Example.debug.xcconfig"; path = "Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		3A85D06BC00D1BD2DEB1F938 /* Pods-YesidOCRCamera_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YesidOCRCamera_Example.release.xcconfig"; path = "Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example.release.xcconfig"; sourceTree = "<group>"; };
+		08800F537B537BA19610B473 /* Pods-YesidOCRCamera_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YesidOCRCamera_Tests.debug.xcconfig"; path = "Target Support Files/Pods-YesidOCRCamera_Tests/Pods-YesidOCRCamera_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F0E89A8B2934BFC4338C525 /* libPods-YesidOCRCamera_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YesidOCRCamera_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		581BCFC2A0F09F73994C578C /* YesidOCRCamera.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YesidOCRCamera.podspec; path = ../YesidOCRCamera.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		590629D729B8B68B009CC3F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		590629D729B8B68B009CC3F6 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		590629D929B8B69B009CC3F6 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		590629DB29B8B946009CC3F6 /* object_labeler.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = object_labeler.tflite; sourceTree = "<group>"; };
-		5C1B720B500B6C19ED626DB3 /* Pods-YesidOCRCamera_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YesidOCRCamera_Tests.debug.xcconfig"; path = "Target Support Files/Pods-YesidOCRCamera_Tests/Pods-YesidOCRCamera_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* YesidOCRCamera_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YesidOCRCamera_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* YesidOCRCamera_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YesidOCRCamera_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		7B4B87E7D787EB6D51138133 /* libPods-YesidOCRCamera_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YesidOCRCamera_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9DADA0E1918D59ABD88E5230 /* Pods-YesidOCRCamera_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YesidOCRCamera_Tests.release.xcconfig"; path = "Target Support Files/Pods-YesidOCRCamera_Tests/Pods-YesidOCRCamera_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		692EA19315FE62229C8209AD /* Pods-YesidOCRCamera_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YesidOCRCamera_Example.debug.xcconfig"; path = "Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		98CB4FE6C998F171167233A8 /* Pods-YesidOCRCamera_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YesidOCRCamera_Tests.release.xcconfig"; path = "Target Support Files/Pods-YesidOCRCamera_Tests/Pods-YesidOCRCamera_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C8A0696BCC372CC33FD89955 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		CB328EBE3719D592911B1F15 /* libPods-YesidOCRCamera_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YesidOCRCamera_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D55F9D867FC0E574069BB8D1 /* Pods-YesidOCRCamera_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YesidOCRCamera_Example.release.xcconfig"; path = "Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0325461D37F61C53FB532740 /* libPods-YesidOCRCamera_Example.a in Frameworks */,
+				35F0F3D4E7706EE82252117C /* libPods-YesidOCRCamera_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,18 +60,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90DEDF0B3C157BCE5956A7BE /* libPods-YesidOCRCamera_Tests.a in Frameworks */,
+				677F69CDB4510209757092AB /* libPods-YesidOCRCamera_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		35ABCEB923E3C6BBC6CDF0F0 /* Frameworks */ = {
+		52D8B3F5E631D806CE7A133E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7B4B87E7D787EB6D51138133 /* libPods-YesidOCRCamera_Example.a */,
-				06FE943759BD8AAC05D75C4C /* libPods-YesidOCRCamera_Tests.a */,
+				CB328EBE3719D592911B1F15 /* libPods-YesidOCRCamera_Example.a */,
+				4F0E89A8B2934BFC4338C525 /* libPods-YesidOCRCamera_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -84,7 +84,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				8106CF4C313BAF8E7AD09D2E /* Pods */,
-				35ABCEB923E3C6BBC6CDF0F0 /* Frameworks */,
+				52D8B3F5E631D806CE7A133E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,7 +103,7 @@
 				590629DB29B8B946009CC3F6 /* object_labeler.tflite */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
-				590629D729B8B68B009CC3F6 /* AppDelegate.swift */,
+				590629D729B8B68B009CC3F6 /* App.swift */,
 				590629D929B8B69B009CC3F6 /* MainApp.swift */,
 			);
 			name = "Example for YesidOCRCamera";
@@ -148,10 +148,10 @@
 		8106CF4C313BAF8E7AD09D2E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0D413613FD332F1A57FF07F0 /* Pods-YesidOCRCamera_Example.debug.xcconfig */,
-				3A85D06BC00D1BD2DEB1F938 /* Pods-YesidOCRCamera_Example.release.xcconfig */,
-				5C1B720B500B6C19ED626DB3 /* Pods-YesidOCRCamera_Tests.debug.xcconfig */,
-				9DADA0E1918D59ABD88E5230 /* Pods-YesidOCRCamera_Tests.release.xcconfig */,
+				692EA19315FE62229C8209AD /* Pods-YesidOCRCamera_Example.debug.xcconfig */,
+				D55F9D867FC0E574069BB8D1 /* Pods-YesidOCRCamera_Example.release.xcconfig */,
+				08800F537B537BA19610B473 /* Pods-YesidOCRCamera_Tests.debug.xcconfig */,
+				98CB4FE6C998F171167233A8 /* Pods-YesidOCRCamera_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -163,11 +163,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "YesidOCRCamera_Example" */;
 			buildPhases = (
-				B7A4AAA58A3FDE9C94E36D3D /* [CP] Check Pods Manifest.lock */,
+				BF942201FA1A00A96F9B5F62 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				D933842D66F2648EDB49E336 /* [CP] Copy Pods Resources */,
+				0AB054F75D2119E9B67AAFA3 /* [CP] Copy Pods Resources */,
+				4427857164517EB168C1F004 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,7 +183,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "YesidOCRCamera_Tests" */;
 			buildPhases = (
-				2208649040244D759877F936 /* [CP] Check Pods Manifest.lock */,
+				C55D35B77FCD1CFC0C4E0C00 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -260,29 +261,43 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2208649040244D759877F936 /* [CP] Check Pods Manifest.lock */ = {
+		0AB054F75D2119E9B67AAFA3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${PODS_ROOT}/Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MLKitObjectDetectionCommon/MLKitObjectDetectionCommonResources.bundle",
 			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YesidOCRCamera_Tests-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MLKitObjectDetectionCommonResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B7A4AAA58A3FDE9C94E36D3D /* [CP] Check Pods Manifest.lock */ = {
+		4427857164517EB168C1F004 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example-frameworks.sh",
+				"${PODS_ROOT}/YesidOCRCamera/YesidOCRCameraFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YesidOCRCameraFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF942201FA1A00A96F9B5F62 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -304,22 +319,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D933842D66F2648EDB49E336 /* [CP] Copy Pods Resources */ = {
+		C55D35B77FCD1CFC0C4E0C00 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/MLKitObjectDetectionCommon/MLKitObjectDetectionCommonResources.bundle",
+			inputFileListPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MLKitObjectDetectionCommonResources.bundle",
+				"$(DERIVED_FILE_DIR)/Pods-YesidOCRCamera_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YesidOCRCamera_Example/Pods-YesidOCRCamera_Example-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -330,7 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				590629DA29B8B69B009CC3F6 /* MainApp.swift in Sources */,
-				590629D829B8B68B009CC3F6 /* AppDelegate.swift in Sources */,
+				590629D829B8B68B009CC3F6 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +473,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D413613FD332F1A57FF07F0 /* Pods-YesidOCRCamera_Example.debug.xcconfig */;
+			baseConfigurationReference = 692EA19315FE62229C8209AD /* Pods-YesidOCRCamera_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -473,7 +492,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A85D06BC00D1BD2DEB1F938 /* Pods-YesidOCRCamera_Example.release.xcconfig */;
+			baseConfigurationReference = D55F9D867FC0E574069BB8D1 /* Pods-YesidOCRCamera_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -491,7 +510,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C1B720B500B6C19ED626DB3 /* Pods-YesidOCRCamera_Tests.debug.xcconfig */;
+			baseConfigurationReference = 08800F537B537BA19610B473 /* Pods-YesidOCRCamera_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4Z472Q5RVW;
@@ -515,7 +534,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DADA0E1918D59ABD88E5230 /* Pods-YesidOCRCamera_Tests.release.xcconfig */;
+			baseConfigurationReference = 98CB4FE6C998F171167233A8 /* Pods-YesidOCRCamera_Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4Z472Q5RVW;

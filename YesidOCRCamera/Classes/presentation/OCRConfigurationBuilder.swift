@@ -21,5 +21,16 @@ public class OCRConfigurationBuilder {
     func getUserLicense() -> String {
         return userLicense
     }
+
+    private var cameraLensFacing = AVCaptureDevice.Position.back
+
+    public func setCameraLensFacing(cameraLensFacing: AVCaptureDevice.Position) -> OCRConfigurationBuilder {
+        self.cameraLensFacing = cameraLensFacing
+        return self
+    }
+
+    func getCameraLensFacing() -> AVCaptureDevice.Position {
+        return cameraLensFacing
+    }
     
 }
